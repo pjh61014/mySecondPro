@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kitri.myemp">
+	<select id="count" resultType="int">
+		select count(*) from myemp
+	</select>
+	<select id="list" resultType="emp">
+		select * from myemp
+	</select>
+	<select id="search" resultType="emp" parameterType="String">
+		select * from myemp where addr like #{addr}
+	</select>
+	<insert id="insert" parameterType="emp">
+		insert into myemp values(#{id},#{pass},#{addr},1000,#{grade},'002',#{name})
+	</insert>
+	<update id="update" parameterType="emp">
+		update myemp set pass=#{pass}, addr=#{addr}, grade=#{grade}, name=#{name} where id=#{id}
+	</update>
+	<select id="read" resultType="emp" parameterType="String">
+		select * from myemp where id = #{id}
+	</select>
+	<delete id="delete" parameterType="String">
+		delete from myemp where id = #{id}
+	</delete>
+	<select id="login" parameterType="emp" resultType="emp">
+		select * from myemp where id = #{id} and pass = #{pass}
+	</select>
+	
+</mapper>
